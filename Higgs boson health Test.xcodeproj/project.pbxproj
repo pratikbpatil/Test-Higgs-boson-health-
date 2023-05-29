@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD162B492A20E799002052EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD162B482A20E799002052EA /* AppDelegate.swift */; };
+		CD162B4B2A20E799002052EA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD162B4A2A20E799002052EA /* SceneDelegate.swift */; };
+		CD162B4D2A20E799002052EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD162B4C2A20E799002052EA /* ViewController.swift */; };
+		CD162B502A20E799002052EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD162B4E2A20E799002052EA /* Main.storyboard */; };
+		CD162B522A20E79B002052EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD162B512A20E79B002052EA /* Assets.xcassets */; };
+		CD162B552A20E79B002052EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD162B532A20E79B002052EA /* LaunchScreen.storyboard */; };
+		CD232C782A21107300725DB7 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD232C772A21107300725DB7 /* MovieModel.swift */; };
+		CD232C7B2A21172600725DB7 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD232C7A2A21172500725DB7 /* MoviesTableViewCell.swift */; };
+		CD232C7D2A21238400725DB7 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD232C7C2A21238400725DB7 /* MovieDetailsViewController.swift */; };
+		CD95528C2A24711B009FE220 /* MovieGenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95528B2A24711B009FE220 /* MovieGenreCollectionViewCell.swift */; };
+		CD95528E2A24739D009FE220 /* CastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95528D2A24739D009FE220 /* CastCollectionViewCell.swift */; };
+		CD9552992A2497CB009FE220 /* image 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD9552962A2497CB009FE220 /* image 3.jpg */; };
+		CD95529A2A2497CB009FE220 /* image 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD9552972A2497CB009FE220 /* image 1.jpg */; };
+		CD95529B2A2497CB009FE220 /* image 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD9552982A2497CB009FE220 /* image 2.jpg */; };
+		CD95529D2A24A018009FE220 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD95529C2A24A018009FE220 /* Font.swift */; };
+		CD9552A22A24C0C5009FE220 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD95529F2A24A249009FE220 /* Roboto-Bold.ttf */; };
+		CD9552B02A24D0BF009FE220 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552A52A24D0BE009FE220 /* Roboto-Black.ttf */; };
+		CD9552B12A24D0BF009FE220 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552A62A24D0BE009FE220 /* Roboto-Italic.ttf */; };
+		CD9552B22A24D0BF009FE220 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552A72A24D0BF009FE220 /* Roboto-LightItalic.ttf */; };
+		CD9552B32A24D0BF009FE220 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552A82A24D0BF009FE220 /* Roboto-BlackItalic.ttf */; };
+		CD9552B42A24D0BF009FE220 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552A92A24D0BF009FE220 /* Roboto-Light.ttf */; };
+		CD9552B52A24D0BF009FE220 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AA2A24D0BF009FE220 /* Roboto-Thin.ttf */; };
+		CD9552B62A24D0BF009FE220 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AB2A24D0BF009FE220 /* Roboto-ThinItalic.ttf */; };
+		CD9552B72A24D0BF009FE220 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AC2A24D0BF009FE220 /* Roboto-Regular.ttf */; };
+		CD9552B82A24D0BF009FE220 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AD2A24D0BF009FE220 /* Roboto-BoldItalic.ttf */; };
+		CD9552B92A24D0BF009FE220 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AE2A24D0BF009FE220 /* Roboto-MediumItalic.ttf */; };
+		CD9552BA2A24D0BF009FE220 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD9552AF2A24D0BF009FE220 /* Roboto-Medium.ttf */; };
+		CDBD15A32A20E91300CB93C8 /* FetchDataFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBD15A22A20E91300CB93C8 /* FetchDataFromJSON.swift */; };
+		CDBD15A52A20EA1200CB93C8 /* matrix.json in Resources */ = {isa = PBXBuildFile; fileRef = CDBD15A42A20EA1200CB93C8 /* matrix.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CD162B452A20E799002052EA /* Higgs boson health Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Higgs boson health Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD162B482A20E799002052EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD162B4A2A20E799002052EA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		CD162B4C2A20E799002052EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD162B4F2A20E799002052EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD162B512A20E79B002052EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD162B542A20E79B002052EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD162B562A20E79B002052EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "/Users/pratikpatil/Desktop/GitHub Repos/Test Higgs boson health/Higgs boson health Test/Info.plist"; sourceTree = "<absolute>"; };
+		CD232C772A21107300725DB7 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		CD232C7A2A21172500725DB7 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
+		CD232C7C2A21238400725DB7 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		CD95528B2A24711B009FE220 /* MovieGenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD95528D2A24739D009FE220 /* CastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD9552962A2497CB009FE220 /* image 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image 3.jpg"; sourceTree = "<group>"; };
+		CD9552972A2497CB009FE220 /* image 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image 1.jpg"; sourceTree = "<group>"; };
+		CD9552982A2497CB009FE220 /* image 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image 2.jpg"; sourceTree = "<group>"; };
+		CD95529C2A24A018009FE220 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		CD95529F2A24A249009FE220 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		CD9552A52A24D0BE009FE220 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		CD9552A62A24D0BE009FE220 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		CD9552A72A24D0BF009FE220 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		CD9552A82A24D0BF009FE220 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		CD9552A92A24D0BF009FE220 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		CD9552AA2A24D0BF009FE220 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		CD9552AB2A24D0BF009FE220 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		CD9552AC2A24D0BF009FE220 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		CD9552AD2A24D0BF009FE220 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CD9552AE2A24D0BF009FE220 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CD9552AF2A24D0BF009FE220 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		CDBD15A22A20E91300CB93C8 /* FetchDataFromJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataFromJSON.swift; sourceTree = "<group>"; };
+		CDBD15A42A20EA1200CB93C8 /* matrix.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = matrix.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD162B422A20E799002052EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD162B3C2A20E799002052EA = {
+			isa = PBXGroup;
+			children = (
+				CD162B472A20E799002052EA /* Higgs boson health Test */,
+				CD162B462A20E799002052EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD162B462A20E799002052EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD162B452A20E799002052EA /* Higgs boson health Test.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD162B472A20E799002052EA /* Higgs boson health Test */ = {
+			isa = PBXGroup;
+			children = (
+				CDBD159D2A20E85500CB93C8 /* Application */,
+				CD232C762A21104C00725DB7 /* Model */,
+				CD232C792A2116F600725DB7 /* TableViewCells */,
+				CD95528A2A2470EE009FE220 /* CollectionViewCells */,
+				CDBD159E2A20E86800CB93C8 /* View Controllers */,
+				CDBD159F2A20E87600CB93C8 /* View */,
+				CDBD15A12A20E8A500CB93C8 /* Utilities */,
+				CDBD15A02A20E88E00CB93C8 /* Resources */,
+				CD162B562A20E79B002052EA /* Info.plist */,
+			);
+			path = "Higgs boson health Test";
+			sourceTree = "<group>";
+		};
+		CD232C762A21104C00725DB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD232C772A21107300725DB7 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD232C792A2116F600725DB7 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CD232C7A2A21172500725DB7 /* MoviesTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		CD95528A2A2470EE009FE220 /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				CD95528B2A24711B009FE220 /* MovieGenreCollectionViewCell.swift */,
+				CD95528D2A24739D009FE220 /* CastCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		CD95528F2A24923F009FE220 /* Cast Images */ = {
+			isa = PBXGroup;
+			children = (
+				CD9552972A2497CB009FE220 /* image 1.jpg */,
+				CD9552982A2497CB009FE220 /* image 2.jpg */,
+				CD9552962A2497CB009FE220 /* image 3.jpg */,
+			);
+			path = "Cast Images";
+			sourceTree = "<group>";
+		};
+		CD9552A32A24D097009FE220 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CD9552A42A24D0A1009FE220 /* Roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CD9552A42A24D0A1009FE220 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				CD95529F2A24A249009FE220 /* Roboto-Bold.ttf */,
+				CD9552A52A24D0BE009FE220 /* Roboto-Black.ttf */,
+				CD9552A82A24D0BF009FE220 /* Roboto-BlackItalic.ttf */,
+				CD9552AD2A24D0BF009FE220 /* Roboto-BoldItalic.ttf */,
+				CD9552A62A24D0BE009FE220 /* Roboto-Italic.ttf */,
+				CD9552A92A24D0BF009FE220 /* Roboto-Light.ttf */,
+				CD9552A72A24D0BF009FE220 /* Roboto-LightItalic.ttf */,
+				CD9552AF2A24D0BF009FE220 /* Roboto-Medium.ttf */,
+				CD9552AE2A24D0BF009FE220 /* Roboto-MediumItalic.ttf */,
+				CD9552AC2A24D0BF009FE220 /* Roboto-Regular.ttf */,
+				CD9552AA2A24D0BF009FE220 /* Roboto-Thin.ttf */,
+				CD9552AB2A24D0BF009FE220 /* Roboto-ThinItalic.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		CDBD159D2A20E85500CB93C8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CD162B482A20E799002052EA /* AppDelegate.swift */,
+				CD162B4A2A20E799002052EA /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CDBD159E2A20E86800CB93C8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CD162B4C2A20E799002052EA /* ViewController.swift */,
+				CD232C7C2A21238400725DB7 /* MovieDetailsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CDBD159F2A20E87600CB93C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD162B4E2A20E799002052EA /* Main.storyboard */,
+				CD162B532A20E79B002052EA /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDBD15A02A20E88E00CB93C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD162B512A20E79B002052EA /* Assets.xcassets */,
+				CD9552A32A24D097009FE220 /* Fonts */,
+				CD95528F2A24923F009FE220 /* Cast Images */,
+				CDBD15A42A20EA1200CB93C8 /* matrix.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CDBD15A12A20E8A500CB93C8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDBD15A22A20E91300CB93C8 /* FetchDataFromJSON.swift */,
+				CD95529C2A24A018009FE220 /* Font.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD162B442A20E799002052EA /* Higgs boson health Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD162B592A20E79B002052EA /* Build configuration list for PBXNativeTarget "Higgs boson health Test" */;
+			buildPhases = (
+				CD162B412A20E799002052EA /* Sources */,
+				CD162B422A20E799002052EA /* Frameworks */,
+				CD162B432A20E799002052EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Higgs boson health Test";
+			productName = "Higgs boson health Test";
+			productReference = CD162B452A20E799002052EA /* Higgs boson health Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD162B3D2A20E799002052EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					CD162B442A20E799002052EA = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = CD162B402A20E799002052EA /* Build configuration list for PBXProject "Higgs boson health Test" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CD162B3C2A20E799002052EA;
+			productRefGroup = CD162B462A20E799002052EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD162B442A20E799002052EA /* Higgs boson health Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD162B432A20E799002052EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD9552B82A24D0BF009FE220 /* Roboto-BoldItalic.ttf in Resources */,
+				CD9552B62A24D0BF009FE220 /* Roboto-ThinItalic.ttf in Resources */,
+				CD9552B52A24D0BF009FE220 /* Roboto-Thin.ttf in Resources */,
+				CD9552B72A24D0BF009FE220 /* Roboto-Regular.ttf in Resources */,
+				CDBD15A52A20EA1200CB93C8 /* matrix.json in Resources */,
+				CD9552B22A24D0BF009FE220 /* Roboto-LightItalic.ttf in Resources */,
+				CD162B552A20E79B002052EA /* LaunchScreen.storyboard in Resources */,
+				CD9552992A2497CB009FE220 /* image 3.jpg in Resources */,
+				CD162B522A20E79B002052EA /* Assets.xcassets in Resources */,
+				CD9552BA2A24D0BF009FE220 /* Roboto-Medium.ttf in Resources */,
+				CD9552A22A24C0C5009FE220 /* Roboto-Bold.ttf in Resources */,
+				CD9552B02A24D0BF009FE220 /* Roboto-Black.ttf in Resources */,
+				CD9552B32A24D0BF009FE220 /* Roboto-BlackItalic.ttf in Resources */,
+				CD162B502A20E799002052EA /* Main.storyboard in Resources */,
+				CD9552B42A24D0BF009FE220 /* Roboto-Light.ttf in Resources */,
+				CD9552B12A24D0BF009FE220 /* Roboto-Italic.ttf in Resources */,
+				CD95529A2A2497CB009FE220 /* image 1.jpg in Resources */,
+				CD9552B92A24D0BF009FE220 /* Roboto-MediumItalic.ttf in Resources */,
+				CD95529B2A2497CB009FE220 /* image 2.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD162B412A20E799002052EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD232C7B2A21172600725DB7 /* MoviesTableViewCell.swift in Sources */,
+				CD95528C2A24711B009FE220 /* MovieGenreCollectionViewCell.swift in Sources */,
+				CD95529D2A24A018009FE220 /* Font.swift in Sources */,
+				CDBD15A32A20E91300CB93C8 /* FetchDataFromJSON.swift in Sources */,
+				CD162B4D2A20E799002052EA /* ViewController.swift in Sources */,
+				CD232C7D2A21238400725DB7 /* MovieDetailsViewController.swift in Sources */,
+				CD232C782A21107300725DB7 /* MovieModel.swift in Sources */,
+				CD95528E2A24739D009FE220 /* CastCollectionViewCell.swift in Sources */,
+				CD162B492A20E799002052EA /* AppDelegate.swift in Sources */,
+				CD162B4B2A20E799002052EA /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CD162B4E2A20E799002052EA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD162B4F2A20E799002052EA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CD162B532A20E79B002052EA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD162B542A20E79B002052EA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CD162B572A20E79B002052EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CD162B582A20E79B002052EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CD162B5A2A20E79B002052EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Higgs boson health Test/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Test.Higgs-boson-health-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CD162B5B2A20E79B002052EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Higgs boson health Test/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Test.Higgs-boson-health-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD162B402A20E799002052EA /* Build configuration list for PBXProject "Higgs boson health Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD162B572A20E79B002052EA /* Debug */,
+				CD162B582A20E79B002052EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD162B592A20E79B002052EA /* Build configuration list for PBXNativeTarget "Higgs boson health Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD162B5A2A20E79B002052EA /* Debug */,
+				CD162B5B2A20E79B002052EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD162B3D2A20E799002052EA /* Project object */;
+}
