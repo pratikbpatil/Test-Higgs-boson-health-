@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import Combine
 
 class MovieDetailsViewController: UIViewController {
     
-    var movieDetails : MovieModel? = nil
+    static let identifier = "MovieDetailsViewController"
     
-    let castCollectionReuseIdentifier = "CastCollectionViewCell"
-    let genreCollectionReuseIdentifier = "MovieGenreCollectionViewCell"
+    var viewModel: MovieDetailsViewModel!
+    var cancellables: Set<AnyCancellable> = []
     
+    //    MARK: IBOutlets
     // Creating Outlets
-    
     @IBOutlet weak var lblYearGenreTime: UILabel!
     @IBOutlet weak var lblMovieTitle: UILabel!
     @IBOutlet weak var imgMoviePoster: UIImageView!
@@ -24,7 +25,6 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var lblMovieRating: UILabel!
     @IBOutlet weak var lblRatingDetails: UILabel!
     @IBOutlet weak var lblMetascoreDetails: UILabel!
-    
     @IBOutlet weak var collectionCast: UICollectionView!
     @IBOutlet weak var lblDirectorsDetails: UILabel!
     @IBOutlet weak var lblWritersDetails: UILabel!
@@ -33,12 +33,9 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var lblUserReviewsTitle: UILabel!
     @IBOutlet weak var lblUserReviewsDate: UILabel!
     @IBOutlet weak var lblUserReviewsDescription: UILabel!
-    
     @IBOutlet weak var lblContentRatingDetails: UILabel!
     @IBOutlet weak var lblPlotSummeryDetails: UILabel!
-    
     // Creating Outlets for Font only
-    
     @IBOutlet weak var titleAwardsLbl: UILabel!
     @IBOutlet weak var titleWatchOnNetflixLbl: UILabel!
     @IBOutlet weak var titleWithSubscriptionLbl: UILabel!
@@ -50,7 +47,6 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var titleDirectorsLbl: UILabel!
     @IBOutlet weak var titleWritersLbl: UILabel!
     @IBOutlet weak var titleSeeAllAwardsBtn: UIButton!
-    
     @IBOutlet weak var titleSeeAllUserReviewsBtn: UIButton!
     @IBOutlet weak var titleUserReviewsLbl: UILabel!
     @IBOutlet weak var titleAddAReviewBtn: UIButton!
@@ -59,29 +55,67 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var titleStorylineLbl: UILabel!
     @IBOutlet weak var titlePlotSummeryLbl: UILabel!
     
-    // Arrays for CollectionView
-    var genreArray = [String]()
-    var castArray = [castStruct]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //      Assigning CollectionView Delegates
+        setUpCollectionView()
+        setUpUI()
+        configureButtons()
+        bindProperties()
+        prepareMovieRating()
+        prepareUserReviewDetails()
+        viewModel.getGenreList()
+        viewModel.getCast()
+    }
+    
+    deinit {
+        cancellables.cancelAll()
+    }
+    
+    // MARK: Custom Functions
+    // Assigning CollectionView Delegates
+    private func setUpCollectionView() {
         collectionCast.delegate = self
         collectionCast.dataSource = self
         
         collectionMovieGenre.delegate = self
         collectionMovieGenre.dataSource = self
-        
-        // Setting only fonts in this method
-        setFonts()
-        
-        // Populating data & configurating views in this method
-        populateMovieDetails()
     }
     
-    //    MARK: setFonts()
-    func setFonts() {
+    // Subscribe movie array to get updates
+    private func subscribeMoviesList() {
+        viewModel.$genres.receive(on: RunLoop.main).sink { [weak self] genres in
+            self?.collectionMovieGenre.reloadData()
+        }.store(in: &cancellables)
+    }
+//    Subscribe cast array to get updates
+    private func subscribeCast() {
+        viewModel.$cast.receive(on: RunLoop.main).sink { [weak self] cast in
+            self?.collectionCast.reloadData()
+        }.store(in: &cancellables)
+    }
+    
+    // Binding properties with Data
+    private func bindProperties() {
+        viewModel.$title.assign(to: \.text!, on: lblMovieTitle).store(in: &cancellables)
+        viewModel.$finalTimeValue.assign(to: \.text!, on: lblYearGenreTime).store(in: &cancellables)
+        viewModel.$plot.assign(to: \.text!, on: lblMovieDetails).store(in: &cancellables)
+        viewModel.$imdbVotes.assign(to: \.text!, on: lblRatingDetails).store(in: &cancellables)
+        viewModel.$metascore.assign(to: \.text!, on: lblMetascoreDetails).store(in: &cancellables)
+        viewModel.$director.assign(to: \.text!, on: lblDirectorsDetails).store(in: &cancellables)
+        viewModel.$writer.assign(to: \.text!, on: lblWritersDetails).store(in: &cancellables)
+        viewModel.$awards.assign(to: \.text!, on: lblAwardsDetails).store(in: &cancellables)
+        viewModel.$reviewDate.assign(to: \.text!, on: lblUserReviewsDate).store(in: &cancellables)
+        viewModel.$plot.assign(to: \.text!, on: lblPlotSummeryDetails).store(in: &cancellables)
+        
+//        Considering this is just POC I have not handled image cashing here.
+        if let imageURL = viewModel.getPosterImageURLString() {
+            imgMoviePoster.downloaded(from: imageURL)
+        }
+    }
+    
+    // Setting up the UI
+    func setUpUI() {
         lblMovieTitle.font = AppFont.setRobotoFont(type: .Light, size: 25)
         lblYearGenreTime.font = AppFont.setRobotoFont(type: .Light, size: 13.46)
         lblMovieDetails.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
@@ -111,129 +145,75 @@ class MovieDetailsViewController: UIViewController {
         lblPlotSummeryDetails.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
     }
     
-    //    MARK: populateMovieDetails()
-    func populateMovieDetails() {
-        lblMovieTitle.text = movieDetails?.Title
-        
-        let stringTime = movieDetails?.Runtime ?? ""
-        let array = stringTime.split(separator: " ")
-        
-        if let runtimeInMinutes = Int(array[0]) {
-            let convertedTime = minutesToHoursAndMinutes(runtimeInMinutes)
-            let finalTime = "\(convertedTime.hours)" + "h " + "\(convertedTime.leftMinutes)" + "m"
-            
-            lblYearGenreTime.text = (movieDetails?.Year ?? "") + "  " + (movieDetails?.Rated ?? "") + "  " + finalTime
-        }
-        
-        if let imagePosterURL = URL(string: movieDetails?.Poster ?? "") {
-            //            Setting Image from URL
-            imgMoviePoster.downloaded(from: imagePosterURL)
-        }
-        
-        if let genreString = movieDetails?.Genre as? String {
-            let filteredString = genreString.replacingOccurrences(of: ",", with: "", options: NSString.CompareOptions.literal, range: nil)
-            
-            let arr = filteredString.split(separator: " ")
-            for i in arr {
-                genreArray.append("\(i)")
-            }
-        }
-        
-        lblMovieDetails.text = movieDetails?.Plot
-        if let imdbRating = movieDetails?.imdbRating {
-            //            Configuring & setting up the attributed string
-            let labelFont1 = AppFont.setRobotoFont(type: .Regular, size: 17.31)
-            let attributes1 :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : labelFont1]
-            let attrString1 = NSAttributedString(string:imdbRating, attributes: attributes1)
-            
-            let labelFont2 = AppFont.setRobotoFont(type: .Regular, size: 11.54)
-            let attributes2 :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : labelFont2]
-            let attrString2 = NSAttributedString(string:"/10", attributes: attributes2)
-            
-            let fullAttributedString = NSMutableAttributedString()
-            fullAttributedString.append(attrString1)
-            fullAttributedString.append(attrString2)
-            
-            lblMovieRating.attributedText = fullAttributedString
-        }
-        
-        lblRatingDetails.text = movieDetails?.imdbVotes
-        if let metascore = movieDetails?.Metascore {
-            lblMetascoreDetails.text = "\(metascore) critic reviews"
-        }
-        
-        //        Configuring & populating Cast Array for CollectionView
-        if let actors = movieDetails?.Actors {
-            
-            let arr = actors.split(separator: ",")
-            castArray.append(castStruct(name: "\(arr[0])", movieName: "Neo", image: "image 1.jpg"))
-            castArray.append(castStruct(name: "\(arr[1])", movieName: "Morpheus", image: "image 2.jpg"))
-            castArray.append(castStruct(name: "\(arr[2])", movieName: "Trinity", image: "image 3.jpg"))
-            
-        }
-        
-        lblDirectorsDetails.text = movieDetails?.Director
-        lblWritersDetails.text = movieDetails?.Writer
-        lblAwardsDetails.text = movieDetails?.Awards
-        lblUserReviewsDate.text = movieDetails?.DVD
-        lblPlotSummeryDetails.text = movieDetails?.Plot
-        
-        //        Setting attributed text for button titles
+//    Configuring button UI
+    func configureButtons() {
+        // Setting attributed text for button titles
         titleSeeAllBtn.titleLabel?.font = AppFont.setRobotoFont(type: .Bold, size: 11.54)
-        titleSeeAllBtn.titleLabel?.text = "SEE ALL"
-        titleSeeAllBtn.titleLabel?.textColor = UIColor(named: "ButtonTitleColor 3996C9")
-        
+        titleSeeAllBtn.titleLabel?.text = seeAll
+        titleSeeAllBtn.titleLabel?.textColor = UIColor(named: buttonTitleColor)
         
         titleSeeAllAwardsBtn.titleLabel?.font = AppFont.setRobotoFont(type: .Bold, size: 11.54)
-        titleSeeAllAwardsBtn.titleLabel?.text = "SEE ALL"
-        titleSeeAllAwardsBtn.titleLabel?.textColor = UIColor(named: "ButtonTitleColor 3996C9")
-        
+        titleSeeAllAwardsBtn.titleLabel?.text = seeAll
+        titleSeeAllAwardsBtn.titleLabel?.textColor = UIColor(named: buttonTitleColor)
         
         titleSeeAllUserReviewsBtn.titleLabel?.font = AppFont.setRobotoFont(type: .Bold, size: 11.54)
-        titleSeeAllUserReviewsBtn.titleLabel?.text = "SEE ALL"
-        titleSeeAllUserReviewsBtn.titleLabel?.textColor = UIColor(named: "ButtonTitleColor 3996C9")
+        titleSeeAllUserReviewsBtn.titleLabel?.text = seeAll
+        titleSeeAllUserReviewsBtn.titleLabel?.textColor = UIColor(named: buttonTitleColor)
         
         titleAddAReviewBtn.titleLabel?.font = AppFont.setRobotoFont(type: .Bold, size: 11.54)
-        titleAddAReviewBtn.titleLabel?.text = "ADD A REVIEW"
-        titleAddAReviewBtn.titleLabel?.textColor = UIColor(named: "ButtonTitleColor 3996C9")
-        
-        //        Making Attributed string for label text
-        let labelFont3 = AppFont.setRobotoFont(type: .Light, size: 11.54)
-        let attributes3 :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : labelFont3, NSAttributedString.Key.foregroundColor : UIColor.white as AnyObject]
-        let attrString3 = NSAttributedString(string:"7", attributes: attributes3)
-        
-        let labelFont4 = AppFont.setRobotoFont(type: .Light, size: 9.62)
-        let attributes4 :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : labelFont4, NSAttributedString.Key.foregroundColor : UIColor(named: "DetailedLabelTextColor 949596") as AnyObject]
-        let attrString4 = NSAttributedString(string:"/10", attributes: attributes4)
-        
-        let fullAttributedMovieRatingString = NSMutableAttributedString()
-        fullAttributedMovieRatingString.append(attrString3)
-        fullAttributedMovieRatingString.append(attrString4)
-        
-        lblUserReviewsDetails.attributedText = fullAttributedMovieRatingString
+        titleAddAReviewBtn.titleLabel?.text = addAReview
+        titleAddAReviewBtn.titleLabel?.textColor = UIColor(named: buttonTitleColor)
     }
     
-    func minutesToHoursAndMinutes(_ minutes: Int) -> (hours: Int , leftMinutes: Int) {
-        return (minutes / 60, (minutes % 60))
+    func prepareMovieRating() { // As this includes UIKit related, could not put it into viewModel.
+        // Configuring & setting up the attributed string.
+        let largerFont = AppFont.setRobotoFont(type: .Regular, size: 17.31)
+        let largerFontAttribute :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : largerFont]
+        let largerFontString = NSAttributedString(string: viewModel.getImdbRating(), attributes: largerFontAttribute)
+        
+        let smallerFont = AppFont.setRobotoFont(type: .Regular, size: 11.54)
+        let smallerFontAttribute :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : smallerFont]
+        let smalletFontString = NSAttributedString(string:"/10", attributes: smallerFontAttribute)
+        
+        let fullAttributedString = NSMutableAttributedString()
+        fullAttributedString.append(largerFontString)
+        fullAttributedString.append(smalletFontString)
+        
+        lblMovieRating.attributedText = fullAttributedString
+    }
+    
+    func prepareUserReviewDetails() { // As this includes UIKit related, could not put it into viewModel.
+        // Configuring & setting up the attributed string.
+        let largerFont = AppFont.setRobotoFont(type: .Light, size: 11.54)
+        let largerFontAttributes :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : largerFont, NSAttributedString.Key.foregroundColor : UIColor.white as AnyObject]
+        let largerFontString = NSAttributedString(string:"7", attributes: largerFontAttributes)
+        
+        let smallerFont = AppFont.setRobotoFont(type: .Light, size: 9.62)
+        let smallerFontAttribute :[NSAttributedString.Key:AnyObject] = [NSAttributedString.Key.font : smallerFont, NSAttributedString.Key.foregroundColor : UIColor(named: detailedLabelTextColor) as AnyObject]
+        let smallerFontString = NSAttributedString(string:"/10", attributes: smallerFontAttribute)
+        
+        let combinedAttributedString = NSMutableAttributedString()
+        combinedAttributedString.append(largerFontString)
+        combinedAttributedString.append(smallerFontString)
+        
+        lblUserReviewsDetails.attributedText = combinedAttributedString
     }
     
     // MARK: Button Actions
-    
     @IBAction func btnIMDBTapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
-// Coding with help of collections to keep code seperated, neat & tidy
+// Coding with help of collections to keep code seperated, neat & tidy.
 // MARK: CollectionView Extension
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionMovieGenre {
-            return genreArray.count
+            return viewModel.getNumberOfGenreInSection(section: section)
         }
         else {
-            return castArray.count
+            return viewModel.getNumberOfCastInSection(section: section)
         }
     }
     
@@ -241,18 +221,20 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         let cellObject = UICollectionViewCell()
         
         if collectionView == collectionMovieGenre {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: genreCollectionReuseIdentifier, for: indexPath) as? MovieGenreCollectionViewCell {
-                //                 Configuring the cell
-                cell.configureCell(currentGenre: genreArray[indexPath.item])
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieGenreCollectionViewCell.identifier, for: indexPath) as? MovieGenreCollectionViewCell {
+                
+                let currentGenre = viewModel.getGenre(row: indexPath.row)
+                cell.configureCell(currentGenre: currentGenre)
                 return cell
             }
             return cellObject
         }
         
         else if collectionView == collectionCast {
-            if let cell = collectionCast.dequeueReusableCell(withReuseIdentifier: castCollectionReuseIdentifier, for: indexPath) as? CastCollectionViewCell {
-                //                Configuring the cell
-                cell.configureCell(castObject: castArray[indexPath.item])
+            if let cell = collectionCast.dequeueReusableCell(withReuseIdentifier: CastCollectionViewCell.identifier, for: indexPath) as? CastCollectionViewCell {
+                
+                let currentCastMember = viewModel.getCastMember(row: indexPath.row)
+                cell.configureCell(castObject: currentCastMember)
                 return cell
             }
             return cellObject
@@ -261,6 +243,7 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         return cellObject
     }
 }
+
 // Method for configuring the collectionViewCellSize
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

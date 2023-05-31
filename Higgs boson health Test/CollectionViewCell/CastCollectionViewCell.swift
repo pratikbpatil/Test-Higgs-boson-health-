@@ -8,24 +8,31 @@
 import UIKit
 
 class CastCollectionViewCell: UICollectionViewCell {
+    static let identifier = "CastCollectionViewCell"
+    
     @IBOutlet weak var imgArtist: UIImageView!
     @IBOutlet weak var lblName: UILabel!
-    
     @IBOutlet weak var lblNameInMovie: UILabel!
     
-    //    Configuring the cell
+    // Configuring the cell
+    override func awakeFromNib() {
+        setupUI()
+    }
+    
+    // Setting up the UI
+    func setupUI() {
+        lblName.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
+        lblNameInMovie.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
+    }
+    
     func configureCell(castObject: castStruct) {
-        
         if let image = castObject.image {
             imgArtist.image = UIImage(named: image)
         }
         if let name = castObject.name {
-            lblName.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
             lblName.text = name
         }
         if let movieName = castObject.movieName {
-            lblNameInMovie.font = AppFont.setRobotoFont(type: .Regular, size: 11.54)
-            
             lblNameInMovie.text = movieName
         }
     }
